@@ -6,16 +6,20 @@ seating = [
   ["Smokey","Toast","Pacha","Mau"]
 ]
 
-4 rows
-
-4 columns
-
-row_num = 0
+answer = "n"
 
 seating.each_with_index do |row, row_num|
   row.each_with_index do |seat, i|
     if seat == nil
-    puts "Row #{row_num + 1 }, seat #{i + 1} is free"
+      break if answer == "y"
+      puts "Row #{row_num + 1 }, seat #{i + 1} is free, would you like to sit there? (y/n)"
+      answer = gets.chomp
+        if answer == "y"
+          puts "What is your name?"
+          name = gets.chomp
+          seating[row_num][i] = name
+          puts "#{name} is now sitting at row #{row_num + 1 }, seat #{i + 1}"
+        end
     end
   end
 end
